@@ -1,40 +1,250 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
 
-		<title>reveal.js</title>
+    <title>reveal.js</title>
 
-		<link rel="stylesheet" href="dist/reset.css">
-		<link rel="stylesheet" href="dist/reveal.css">
-		<link rel="stylesheet" href="dist/theme/black.css" id="theme">
+    <link rel="stylesheet" href="dist/reset.css" />
+    <link rel="stylesheet" href="dist/reveal.css" />
+    <link rel="stylesheet" href="dist/theme/moon.css" id="theme" />
 
-		<!-- Theme used for syntax highlighted code -->
-		<link rel="stylesheet" href="plugin/highlight/monokai.css" id="highlight-theme">
-	</head>
-	<body>
-		<div class="reveal">
-			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
-			</div>
-		</div>
+    <!-- Theme used for syntax highlighted code -->
+    <link
+      rel="stylesheet"
+      href="plugin/highlight/monokai.css"
+      id="highlight-theme"
+    />
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section data-markdown>
+          <textarea data-template>
+            # ES6
+          </textarea>
+        </section>
+        <section data-markdown>
+          <textarea data-template>
+            ## Pourquoi cette présentation?
+          </textarea>
+        </section>
+        <section data-markdown>
+          <textarea data-template>
+            * Préparation pour le dojo React
+            * Plus simple d'apprendre React en connaisant déjà ES6
+            * Connaissances utiles pour le développement front-end / JavaScript
+          </textarea>
+        </section>
+        <section data-markdown>
+          <textarea data-template>
+            ## Sommaire
+            1. Qu'est-ce que ES6?
+            2. Les nouveautés ES6
+          </textarea>
+        </section>
+        <section data-markdown>
+          <textarea data-template>
+            ## 1 - Qu'est-ce que ES6?
+          </textarea>
+        </section>
+        <section data-markdown>
+          <textarea data-template>
+            ## ECMAScript
+            * ES = ECMAScript
+            * ECMAScript est un standart, qui définit des spécifications.
+            * JavaScript est une implémentation d'ECMAScript.
+            * Déjà 11 versions publiées, la dernière en 2020
+            * Plus d'info [ici](https://en.wikipedia.org/wiki/ECMAScript)
+          </textarea>
+        </section>
+        <section data-markdown>
+          <textarea data-template>
+            ## ES6 
+            * Aussi appelé ECMAScript 2015 (ES2015)
+            * 6 ème édition d'ECMAScript
+            * Finalisée en 2015
+            * [Supportée](https://caniuse.com/#feat=es6) par tous les navigateurs modernes
+            * Largement utilisé par les framework front-end, dont React!
+            * Disponible [ici](https://www.ecma-international.org/ecma-262/6.0/index.html)
 
-		<script src="dist/reveal.js"></script>
-		<script src="plugin/notes/notes.js"></script>
-		<script src="plugin/markdown/markdown.js"></script>
-		<script src="plugin/highlight/highlight.js"></script>
-		<script>
-			// More info about initialization & config:
-			// - https://revealjs.com/initialization/
-			// - https://revealjs.com/config/
-			Reveal.initialize({
-				hash: true,
+            Note:
+            Les specs d'une nouvelle version ne sont pas implémentées par les navigateurs dès leur publication!
+          </textarea>
+        </section>
+        <section data-markdown>
+          <textarea data-template>
+            ## React et ES6
+            ```js [1|8-10|14]
+              class Timer extends React.Component {
+                constructor(props) {
+                  super(props);
+                  this.state = { seconds: 0 };
+                }
+              
+                tick() {
+                  this.setState(state => ({
+                    seconds: state.seconds + 1
+                  }));
+                }
+              
+                componentDidMount() {
+                  this.interval = setInterval(() => this.tick(), 1000);
+                }
+                //...
+              }
+            ```
 
-				// Learn about plugins: https://revealjs.com/plugins/
-				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
-			});
-		</script>
-	</body>
+            Note:
+            Exemple de syntaxe ES6 dans un composant React (class, arrow function)
+          </textarea>
+        </section>
+        <section data-markdown>
+          <textarea data-template>
+            ## React et ES6
+            ```js [1|3|4|5]
+              import React, { useState } from "react";
+
+              const Component = (props) => {
+                const { name = "Toto" } = props;
+                const [age, setAge] = useState(0);
+              
+                //...
+              };
+            ```
+
+            Note:
+            Exemple de syntaxe ES6 dans un composant React (import, arrow function, destructuring)
+          </textarea>
+        </section>
+        <section data-markdown>
+          <textarea data-template>
+            ## 2 - Les nouveautés ES6
+          </textarea>
+        </section>
+        <section data-markdown>
+          <textarea data-template>
+            * Liste non exhaustive
+            * Présentation des nouveautés les plus utilisées par React
+          </textarea>
+        </section>
+        <section data-markdown>
+          <textarea data-template>
+            ## const / let
+            * **const** et **let** remplacent **var** pour déclarer des variables
+            * **var** peut toujours être utilisée, mais c'est une mauvaise pratique
+            ```js
+              var toto = 3;
+              
+              const users = [];
+
+              let isLocked = false;
+            ```
+          </textarea>
+        </section>
+        <section data-markdown>
+          <textarea data-template>
+            ## let
+            * Permet de déclarer une variable
+            * On peut lui réaffecter une valeur
+            ```js
+              let user;
+
+              let toto = 3;
+              toto = 4; // OK
+            ```
+          </textarea>
+        </section>
+        <section data-markdown>
+          <textarea data-template>
+            ## const
+            * Crée une constante accessible uniquement en lecture
+            * On ne peut pas lui réaffecter une valeur
+            ```js
+              const toto = 3;
+              toto = 4; // ERROR!
+
+              const user; // ERROR!
+            ```
+          </textarea>
+        </section>
+        <section data-markdown>
+          <textarea data-template>
+            ## const
+            * Par contre, la variable déclarée avec **const** reste mutable
+            ```js
+              const object = { toto: 4 };
+              object.toto = 5; // OK
+
+              const array = ["Shirley", "Tiffany"];
+              array.push("Brigitte"); // OK
+            ```
+          </textarea>
+        </section>
+        <section data-markdown>
+          <textarea data-template>
+            ## Utiliser const ou let?
+            * Bonne pratique utilisée à Axa: toujours utiliser **const** si c'est possible
+            * Un article sur le débat [let vs const](https://overreacted.io/on-let-vs-const/)
+          </textarea>
+        </section>
+        <section data-markdown>
+          <textarea data-template>
+            ## arrow functions
+            * Permet de déclarer des fonctions de manière plus courtes
+            * Syntaxes équivalentes:
+            ```js
+              function sayHello() {
+                return 'i am saying hello';
+              }
+              
+              const sayHello = () => {
+                return 'i am saying hello';
+              }
+              
+              const sayHello = () => 'i am saying hello';
+            ```
+          </textarea>
+        </section>
+        <section data-markdown>
+          <textarea data-template>
+            ## arrow functions
+            * Utile avec les méthodes de tableaux, par exemple:
+            ```js
+              const users = [
+                { name: "Roger", age: 15 },
+                { name: "Brigitte", age: 67 },
+              ];
+
+              const mineurs = users.filter(function(user) {
+                return user.age < 18;
+              });
+
+              const majeurs = users.filter(user => user.age >= 18);
+            ```
+          </textarea>
+        </section>
+      </div>
+    </div>
+
+    <script src="dist/reveal.js"></script>
+    <script src="plugin/notes/notes.js"></script>
+    <script src="plugin/markdown/markdown.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
+    <script>
+      // More info about initialization & config:
+      // - https://revealjs.com/initialization/
+      // - https://revealjs.com/config/
+      Reveal.initialize({
+        hash: true,
+
+        // Learn about plugins: https://revealjs.com/plugins/
+        plugins: [RevealMarkdown, RevealHighlight, RevealNotes],
+      });
+    </script>
+  </body>
 </html>
